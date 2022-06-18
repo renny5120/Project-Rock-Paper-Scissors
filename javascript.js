@@ -42,6 +42,8 @@ function playRound(playerSelection, computerSelection){
 
 }
 
+
+// chooses computer choice
 function computerPlay(){
     let str;
     const choices = ["rock", "paper", "scissors"];
@@ -49,6 +51,42 @@ function computerPlay(){
     return str;
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game(){
+
+    // keeps track of wins
+    let playerWins = 0;
+    let computerWins = 0;
+
+    // plays 5 rounds
+    for (let i = 0; i < 5; i++){
+        const playerSelection = prompt("Choose: Rock, Paper, or Scissors");
+        const computerSelection = computerPlay();
+        let result = playRound(playerSelection, computerSelection);
+
+        switch(result){
+            case "win":
+                playerWins+=1;
+                alert(result);
+                break;
+            case "loss":
+                computerWins+=1;
+                alert(result);
+                break;
+            case "draw":
+                alert(result);
+                break;
+        }
+    }
+
+    // compares player wins to computer wins
+    if(playerWins > computerWins){
+        return "Player wins: " + playerWins + "-" + computerWins;
+    } else if (computerWins > playerWins){
+        return "Computer wins: " + computerWins + "-" + playerWins;
+    } else {
+        return "Draw: " + playerWins + "-" + computerWins;
+    }
+
+}
+
+console.log(game());
